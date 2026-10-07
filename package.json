@@ -1,0 +1,15 @@
+{
+  "name": "@airius-the-creator/airius-the-creator",
+  "version": "1.0.0",
+  "description": "first package ko from hinigaran - airius the creator",
+  "main": "index.js",
+  "author": "Jonh Earl Suarez Delgado",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Airius-The-Creator/airius-the-creator.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
+}
