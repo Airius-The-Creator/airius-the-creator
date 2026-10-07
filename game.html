@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>airius game</title>
+<!-- my first js game - airius 2026 haha -->
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#070709;color:#fff;font-family:monospace;min-height:100vh;display:flex;align-items:center;justify-content:center}
+.box{border:1px solid #222;background:#121214;padding:30px 22px;border-radius:20px;text-align:center;width:90%;max-width:360px}
+h1{font-size:26px}
+span{color:#a29bfe}
+#num{font-size:70px;color:#a29bfe;margin:12px 0}
+button{width:100%;padding:16px;background:#a29bfe;border:0;border-radius:100px;font-weight:bold;font-size:18px;cursor:pointer}
+button:active{transform:scale(0.96)}
+small{color:#555;display:block;margin-top:14px;font-size:10px}
+a{color:#666;text-decoration:none;font-size:11px}
+</style>
+</head>
+<body>
+<div class="box">
+<a href="./"> <- home </a>
+<h1 style="margin-top:10px">airius <span>clicker</span></h1>
+<div id="num">0</div>
+<button onclick="add()">CLICK 👆</button>
+<small>made by Airius x Creator</small>
+</div>
+<script>
+// simple clicker by me - airius
+let c = localStorage.getItem('myScore');
+if(c == null){c=0} else {c=parseInt(c)}
+document.getElementById('num').innerHTML = c;
+
+function add(){
+c++;
+document.getElementById('num').innerHTML = c;
+localStorage.setItem('myScore', c);
+// little pop
+document.getElementById('num').style.transform = "scale(1.15)";
+setTimeout(()=>{document.getElementById('num').style.transform="scale(1)"},80);
+}
+</script>
+</body>
+</html>
