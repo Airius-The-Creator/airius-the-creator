@@ -1,54 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Airius</title>
-<!-- made by airius - 2026 -->
+<title>airius</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#050507;color:#fff;font-family:monospace;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px;overflow:hidden;position:relative}
-#stars{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1}
-.card{border:1px solid #222;background:rgba(16,16,20,0.9);backdrop-filter:blur(10px);padding:40px 28px;border-radius:24px;text-align:center;width:100%;max-width:420px;z-index:2}
-.dot{width:8px;height:8px;background:#0f8;border-radius:50%;display:inline-block;box-shadow:0 0 10px #0f8;animation:blink 2s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
-h1{font-size:34px;margin:16px 0 12px}h1 span{color:#a29bfe}
-p{color:#888;font-size:12px;line-height:1.6;margin-bottom:22px}
-.links{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
-a{color:#fff;text-decoration:none;background:#1e1e22;border:1px solid #2a2a2e;padding:10px 18px;border-radius:10px;font-size:11px;transition:0.2s}
-a:hover{background:#fff;color:#000;transform:translateY(-2px)}
+body { 
+  background: #0d1117; 
+  color: white; 
+  font-family: monospace;
+  text-align: center;
+  padding: 40px 20px;
+}
+h1 { color: #f78166; }
+a { color: #58a6ff; text-decoration: none; }
+.box {
+  border: 1px solid #30363d;
+  padding: 20px;
+  max-width: 500px;
+  margin: 20px auto;
+  border-radius: 10px;
+}
+.lang { 
+  display: inline-block; 
+  padding: 5px 10px; 
+  margin: 3px; 
+  border-radius: 15px; 
+  background: #21262d;
+  font-size: 12px;
+}
 </style>
 </head>
 <body>
-<canvas id="stars"></canvas>
-<div class="card">
-<div style="background:#111;border:1px solid #222;padding:6px 12px;border-radius:100px;display:inline-flex;align-items:center;gap:6px;font-size:11px;color:#888"><div class="dot"></div> LIVE</div>
-<h1>airius is <span>here</span></h1>
-<p>yo im airius. i build stuff on the internet when im bored lol</p>
-<div class="links">
-<a href="https://github.com/Airius-The-Creator">GitHub</a>
-<a href="https://www.instagram.com/mizugameza_airius">Instagram</a>
-<a href="https://www.threads.com/@suarezdelgadojonhearl">Threads</a>
-<a href="https://www.facebook.com/jonh.earl.suarez.delgado.2025">Facebook</a>
+
+<h1>airius the creator</h1>
+<p>try your best and the victory shall come</p>
+
+<div class="box">
+<p>yo, jonh earl here. just building random stuff on the internet.</p>
+<p>currently have 7 languages on my github lol</p>
+<div>
+<span class="lang">html</span>
+<span class="lang">c++</span>
+<span class="lang">js</span>
+<span class="lang">c#</span>
+<span class="lang">go</span>
+<span class="lang">python</span>
+<span class="lang">java</span>
 </div>
-<p style="margin-top:24px;font-size:10px;color:#444">built by Airius x Creator • 2026</p>
 </div>
-<script>
-const canvas=document.getElementById('stars');
-const ctx=canvas.getContext('2d');
-canvas.width=innerWidth;canvas.height=innerHeight;
-let s=[];
-for(let i=0;i<120;i++){s.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.2,v:Math.random()*0.4+0.2})}
-function draw(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-ctx.fillStyle='#fff';
-s.forEach(o=>{
-ctx.beginPath();ctx.arc(o.x,o.y,o.r,0,Math.PI*2);ctx.fill();
-o.y+=o.v;if(o.y>canvas.height){o.y=0;o.x=Math.random()*canvas.width}
-});
-requestAnimationFrame(draw);
-}
-draw();
-</script>
+
+<div class="box">
+<a href="https://github.com/Airius-The-Creator">github</a> -
+<a href="https://instagram.com/mizugameza_airius">ig</a> -
+<a href="https://facebook.com/jonh.earl.suarez.delgado.2025">fb</a>
+</div>
+
+<p style="font-size: 11px; color: #8b949e;">made by airius - 2026</p>
+
 </body>
 </html>
