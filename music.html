@@ -6,33 +6,27 @@
 <title>My Fav - 5 Songs</title>
 <style>
 body{margin:0;background:#0a0a0f;color:#fff;font-family:monospace;display:flex;flex-direction:column;height:100vh}
-.header{border:2px solid #00f0ff;border-radius:20px;margin:15px;padding:15px;text-align:center;box-shadow:0 0 15px #00f0ff50}
-.header h1{color:#00f0ff;margin:0;font-size:22px}
+.header{border:2px solid #00f0ff;border-radius:20px;margin:15px;padding:15px;text-align:center;box-shadow:0 0 15px #00f0ff40}
 .playlist{flex:1;overflow-y:auto;padding:10px}
-.song{padding:12px 15px;margin:8px;border-radius:12px;background:#15151f;display:flex;align-items:center;gap:12px;cursor:pointer}
-.song.active{background:#00f0ff20;border:1px solid #00f0ff}
-.circle{width:24px;height:24px;border-radius:50%;border:2px solid #555;display:flex;align-items:center;justify-content:center;font-size:12px}
-.song.active.circle{background:#ff0055;border-color:#ff0055;color:#fff}
-.song b{display:block;font-size:14px}
-.song span{font-size:11px;color:#888}
-.player{border-top:1px solid #00f0ff;padding:15px;display:flex;justify-content:space-between;align-items:center;background:#0f0f1a}
-.player button{background:#00f0ff22;border:1px solid #00f0ff;color:#00f0ff;width:40px;height:40px;border-radius:50%;font-size:16px;cursor:pointer;margin-left:8px}
-a{color:#00f0ff;text-decoration:none;font-size:12px}
+.song{padding:14px;margin:8px;border-radius:12px;background:#15151f;display:flex;gap:12px;cursor:pointer;border:1px solid #222}
+.song.active{border-color:#00f0ff;background:#00f0ff22}
+.player{border-top:1px solid #00f0ff;padding:15px;display:flex;justify-content:space-between;align-items:center;background:#0f0f1a;position:sticky;bottom:0}
+.player button{background:#00f0ff22;border:1px solid #00f0ff;color:#00f0ff;width:48px;height:48px;border-radius:50%;font-size:20px;cursor:pointer}
 </style>
 </head>
 <body>
 
 <div class="header">
-<h1>♒ My Fav - 5 Songs</h1>
-<div id="status" style="color:#00f0ff;font-size:12px;margin-top:5px">Ready: Cosmos...</div>
+<h1 style="color:#00f0ff;margin:0;font-size:20px">♒ My Fav - 5 Songs</h1>
+<div id="status" style="color:#00f0ff;font-size:12px;margin-top:8px">Click any song to play 🎵</div>
 </div>
 
 <div class="playlist" id="list"></div>
 
 <div class="player">
 <div>
-<b id="nowTitle">Cosmos</b><br>
-<span id="nowArtist" style="font-size:11px;color:#888">Shania Yan</span>
+<b id="nowTitle">Choose a song</b><br>
+<span style="font-size:11px;color:#888">Shania Yan</span>
 </div>
 <div>
 <button onclick="prev()">⏮</button>
@@ -41,18 +35,18 @@ a{color:#00f0ff;text-decoration:none;font-size:12px}
 </div>
 </div>
 
-<audio id="audio" preload="metadata"></audio>
+<audio id="audio" preload="none"></audio>
 
 <script>
 const songs = [
-  {title:"Delulu", file:"./Shania_Yan_-_Delulu__Official_Music_Video_(256k).mp3"},
-  {title:"Cosmos", file:"./Shania_Yan_-_Cosmos__Official_Music_Video_(256k).mp3"},
-  {title:"Where The Wind Takes Me", file:"./Shania_Yan_-_Where_The_Wind_Takes_Me__Official_Music_Video_(256k).mp3"},
-  {title:"Sick of You", file:"./Shania_Yan_-_Sick_of_You__Official_Music_Video_(256k).mp3"},
-  {title:"Sunshine In the Rain", file:"./Shania_Yan_-_Sunshine_In_the_Rain__Official_Music_Video_(256k).mp3"}
+ {title:"Delulu", file:"Shania_Yan_-_Delulu__Official_Music_Video_(256k).mp3"},
+ {title:"Cosmos", file:"Shania_Yan_-_Cosmos__Official_Music_Video_(256k).mp3"},
+ {title:"Where The Wind Takes Me", file:"Shania_Yan_-_Where_The_Wind_Takes_Me__Official_Music_Video_(256k).mp3"},
+ {title:"Sick of You", file:"Shania_Yan_-_Sick_of_You__Official_Music_Video_(256k).mp3"},
+ {title:"Sunshine In the Rain", file:"Shania_Yan_-_Sunshine_In_the_Rain__Official_Music_Video_(256k).mp3"}
 ];
 
-let current = 1;
+let current = 0;
 const audio = document.getElementById('audio');
 const list = document.getElementById('list');
 const status = document.getElementById('status');
@@ -60,44 +54,43 @@ const status = document.getElementById('status');
 function render(){
  list.innerHTML = '';
  songs.forEach((s,i)=>{
-   const div = document.createElement('div');
-   div.className = 'song'+(i===current?' active':'');
-   div.innerHTML = `<div class="circle">${i===current?'✓':''}</div><div><b>${s.title}</b><span>Shania Yan - ${s.title}</span></div>`;
-   div.onclick = ()=> play(i);
-   list.appendChild(div);
+  const div = document.createElement('div');
+  div.className = 'song' + (i===current? ' active' : '');
+  div.innerHTML = `<div style="font-size:20px">🎵</div><div><b>${s.title}</b><br><span style="font-size:11px;color:#888">Shania Yan</span></div>`;
+  div.onclick = () => play(i);
+  list.appendChild(div);
  });
 }
 
 function play(i){
  current = i;
- audio.src = songs[i].file;
+ // encode para di mag-error yung ()
+ const src = "./" + encodeURIComponent(songs[i].file);
+ audio.src = src;
  audio.play().then(()=>{
-   status.textContent = "Playing: "+songs[i].title;
-   document.getElementById('playBtn').textContent="⏸";
-   document.getElementById('nowTitle').textContent=songs[i].title;
- }).catch(e=>{
-   status.textContent = "Di ma-play: "+e.message+" - Check file name!";
-   alert("Di ma-play Ghi! Reason: "+e.message+"\n\nFile: "+songs[i].file+"\n\nSiguraduhin na tama pangalan ng mp3 sa GitHub!");
+  status.textContent = "Playing: " + songs[i].title + " 🎶";
+  document.getElementById('nowTitle').textContent = songs[i].title;
+  document.getElementById('playBtn').textContent = "⏸";
+ }).catch(()=>{
+  status.textContent = "Click ulit para mag-play: " + songs[i].title;
  });
  render();
 }
 
 function toggle(){
+ if(audio.src===""){ play(current); return; }
  if(audio.paused){ audio.play(); document.getElementById('playBtn').textContent="⏸"; }
- else{ audio.pause(); document.getElementById('playBtn').textContent="▶"; }
+ else { audio.pause(); document.getElementById('playBtn').textContent="▶"; }
 }
 function next(){ play((current+1)%songs.length); }
 function prev(){ play((current-1+songs.length)%songs.length); }
 
 audio.addEventListener('ended', next);
-audio.addEventListener('error', ()=>{
- status.textContent = "Error loading: "+songs[current].file;
- alert("Di mahanap file Ghi!\n"+songs[current].file+"\n\nCheck mo kung same name sa GitHub yung mp3!");
-});
+audio.addEventListener('error', ()=>{ status.textContent = "Di mahanap file: "+songs[current].file; });
 
 render();
-https://airius-the-creator.github.io/airius-the-creator/music.html
 </script>
-<br><center><a href="./">← Home</a></center><br>
+
+<br><center><a href="./" style="color:#00f0ff;text-decoration:none">← Home</a></center><br>
 </body>
 </html>
