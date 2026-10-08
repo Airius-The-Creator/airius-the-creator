@@ -1,0 +1,15 @@
+# Airius The Creator - 9 Languages All Visible Colors
+*.html linguist-language=HTML
+*.css linguist-language=CSS
+*.js linguist-language=JavaScript linguist-detectable=true
+*.cpp linguist-language=C++ linguist-detectable=true
+*.cs linguist-language=C# linguist-detectable=true
+*.go linguist-language=Go linguist-detectable=true
+*.py linguist-language=Python linguist-detectable=true
+*.java linguist-language=Java linguist-detectable=true
+*.php linguist-language=PHP linguist-detectable=true
+*.rs linguist-language=Rust linguist-detectable=true
+
+# Wag i-ignore lahat
+* linguist-vendored=false
+* linguist-generated=false
