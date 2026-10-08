@@ -1,94 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fav Music - Airius</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Fav - 5 Songs</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:monospace}
-body{background:#050a14;color:#fff;padding:12px;min-height:100vh}
-.container{max-width:500px;margin:0 auto;padding-bottom:90px}
-.card{margin:12px 0;padding:16px;background:#0009;border-radius:16px;border:1px solid #ffffff12}
-.header{border:2px solid #00d4ff;text-align:center}
-.song-item{padding:12px;display:flex;align-items:center;justify-content:space-between;border-radius:12px;margin:6px 0;cursor:pointer;border:1px solid #ffffff0d;background:rgba(255,255,255,0.02)}
-.song-item.active{background:rgba(0,212,255,0.15);border-color:#00d4ff55}
-.left{display:flex;align-items:center;gap:10px}
-.dot{width:20px;height:20px;border-radius:50%;border:2px solid #555;display:flex;align-items:center;justify-content:center;font-size:10px}
-.dot.on{background:#ff2d2d;border-color:#ff2d2d;color:#fff}
-.name{font-size:11px;color:#fff}
-.artist{font-size:9px;color:#888}
-.play-bar{position:fixed;bottom:0;left:0;right:0;background:#0a0f1f;border-top:2px solid #00d4ff55;padding:10px 14px;display:flex;align-items:center;gap:10px}
-.ctrl{width:34px;height:34px;border-radius:50%;border:1px solid #00d4ff55;background:rgba(0,212,255,0.15);color:#00d4ff;display:flex;align-items:center;justify-content:center;cursor:pointer}
-.btn{padding:6px 12px;border-radius:15px;border:1px solid #00d4ff55;color:#00d4ff;text-decoration:none;font-size:10px}
+body{margin:0;background:#0a0a0f;color:#fff;font-family:monospace;display:flex;flex-direction:column;height:100vh}
+.header{border:2px solid #00f0ff;border-radius:20px;margin:15px;padding:15px;text-align:center;box-shadow:0 0 15px #00f0ff50}
+.header h1{color:#00f0ff;margin:0;font-size:22px}
+.playlist{flex:1;overflow-y:auto;padding:10px}
+.song{padding:12px 15px;margin:8px;border-radius:12px;background:#15151f;display:flex;align-items:center;gap:12px;cursor:pointer}
+.song.active{background:#00f0ff20;border:1px solid #00f0ff}
+.circle{width:24px;height:24px;border-radius:50%;border:2px solid #555;display:flex;align-items:center;justify-content:center;font-size:12px}
+.song.active.circle{background:#ff0055;border-color:#ff0055;color:#fff}
+.song b{display:block;font-size:14px}
+.song span{font-size:11px;color:#888}
+.player{border-top:1px solid #00f0ff;padding:15px;display:flex;justify-content:space-between;align-items:center;background:#0f0f1a}
+.player button{background:#00f0ff22;border:1px solid #00f0ff;color:#00f0ff;width:40px;height:40px;border-radius:50%;font-size:16px;cursor:pointer;margin-left:8px}
+a{color:#00f0ff;text-decoration:none;font-size:12px}
 </style>
 </head>
 <body>
-<div class="container">
-<div class="card header"><h2 style="color:#00d4ff">♒ My Fav - 5 Songs</h2><p id="status" style="font-size:9px;color:#ffaa00;margin-top:6px">Click a song to play</p></div>
-<div class="card" id="list"></div>
-<div class="card" style="text-align:center"><a class="btn" href="./index.html">← Home</a></div>
+
+<div class="header">
+<h1>♒ My Fav - 5 Songs</h1>
+<div id="status" style="color:#00f0ff;font-size:12px;margin-top:5px">Ready: Cosmos...</div>
 </div>
-<div class="play-bar">
-<div style="flex:1"><p class="name" id="nowTitle">Select song</p><p class="artist" id="nowArtist">Shania Yan</p></div>
-<div class="ctrl" onclick="toggle()"><span id="playIcon">▶</span></div>
-<div class="ctrl" onclick="next()">⏭</div>
+
+<div class="playlist" id="list"></div>
+
+<div class="player">
+<div>
+<b id="nowTitle">Cosmos</b><br>
+<span id="nowArtist" style="font-size:11px;color:#888">Shania Yan</span>
 </div>
-<audio id="audio" preload="auto"></audio>
+<div>
+<button onclick="prev()">⏮</button>
+<button onclick="toggle()" id="playBtn">▶</button>
+<button onclick="next()">⏭</button>
+</div>
+</div>
+
+<audio id="audio" preload="metadata"></audio>
+
 <script>
 const songs = [
-{file:"Shania_Yan_-_Delulu__Official_Music_Video_(256k).mp3", title:"Delulu"},
-{file:"Shania_Yan_-_Cosmos__Official_Music_Video_(256k).mp3", title:"Cosmos"},
-{file:"Shania_Yan_-_Where_The_Wind_Takes_Me__Official_Music_Video_(256k).mp3", title:"Where The Wind Takes Me"},
-{file:"Shania_Yan_-_Sick_of_You_Official_Music_Video_(256k).mp3", title:"Sick of You"},
-{file:"Shania_Yan_-_Sunshine_in_the_Rain__Official_Lyric_Video_(256k).mp3", title:"Sunshine in the Rain"}
+  {title:"Delulu", file:"./Shania_Yan_-_Delulu__Official_Music_Video_(256k).mp3"},
+  {title:"Cosmos", file:"./Shania_Yan_-_Cosmos__Official_Music_Video_(256k).mp3"},
+  {title:"Where The Wind Takes Me", file:"./Shania_Yan_-_Where_The_Wind_Takes_Me__Official_Music_Video_(256k).mp3"},
+  {title:"Sick of You", file:"./Shania_Yan_-_Sick_of_You__Official_Music_Video_(256k).mp3"},
+  {title:"Sunshine In the Rain", file:"./Shania_Yan_-_Sunshine_In_the_Rain__Official_Music_Video_(256k).mp3"}
 ];
 
-let idx=0, isPlay=false;
-const audio=document.getElementById('audio'), list=document.getElementById('list'), nowTitle=document.getElementById('nowTitle'), statusEl=document.getElementById('status'), playIcon=document.getElementById('playIcon');
+let current = 1;
+const audio = document.getElementById('audio');
+const list = document.getElementById('list');
+const status = document.getElementById('status');
 
 function render(){
-list.innerHTML='';
-songs.forEach((s,i)=>{
-const d=document.createElement('div');
-d.className='song-item'+(i===idx?' active':'');
-d.innerHTML=`<div class="left"><div class="dot ${i===idx?'on':''}">${i===idx?'✓':''}</div><div><p class="name">${s.title}</p><p class="artist">Shania Yan - ${s.title}</p></div></div><span style="font-size:8px;color:${i===idx&&isPlay?'#00ff88':'#555'}">${i===idx&&isPlay?'● PLAYING':''}</span>`;
-d.onclick=()=>{load(i);play();};
-list.appendChild(d);
-});
+ list.innerHTML = '';
+ songs.forEach((s,i)=>{
+   const div = document.createElement('div');
+   div.className = 'song'+(i===current?' active':'');
+   div.innerHTML = `<div class="circle">${i===current?'✓':''}</div><div><b>${s.title}</b><span>Shania Yan - ${s.title}</span></div>`;
+   div.onclick = ()=> play(i);
+   list.appendChild(div);
+ });
 }
 
-function load(i){
-idx=i;
-const file = songs[i].file;
-// IMPORTANT: encode para gumana yung ( ) sa filename
-const url = './' + encodeURI(file);
-console.log('Loading:', url);
-audio.src = url;
-nowTitle.textContent = songs[i].title;
-statusEl.textContent = 'Loading: ' + songs[i].title + '...';
-statusEl.style.color = '#00d4ff';
+function play(i){
+ current = i;
+ audio.src = songs[i].file;
+ audio.play().then(()=>{
+   status.textContent = "Playing: "+songs[i].title;
+   document.getElementById('playBtn').textContent="⏸";
+   document.getElementById('nowTitle').textContent=songs[i].title;
+ }).catch(e=>{
+   status.textContent = "Di ma-play: "+e.message+" - Check file name!";
+   alert("Di ma-play Ghi! Reason: "+e.message+"\n\nFile: "+songs[i].file+"\n\nSiguraduhin na tama pangalan ng mp3 sa GitHub!");
+ });
+ render();
+}
+
+function toggle(){
+ if(audio.paused){ audio.play(); document.getElementById('playBtn').textContent="⏸"; }
+ else{ audio.pause(); document.getElementById('playBtn').textContent="▶"; }
+}
+function next(){ play((current+1)%songs.length); }
+function prev(){ play((current-1+songs.length)%songs.length); }
+
+audio.addEventListener('ended', next);
+audio.addEventListener('error', ()=>{
+ status.textContent = "Error loading: "+songs[current].file;
+ alert("Di mahanap file Ghi!\n"+songs[current].file+"\n\nCheck mo kung same name sa GitHub yung mp3!");
+});
+
 render();
-}
-
-function play(){
-audio.play().then(()=>{
-isPlay=true; playIcon.textContent='⏸'; statusEl.textContent='▶ Playing: '+songs[idx].title; statusEl.style.color='#00ff88'; render();
-}).catch(e=>{
-statusEl.textContent='❌ Error: '+e.message+' - Check if mp3 is in GitHub Pages';
-statusEl.style.color='#ff2d2d';
-console.error(e);
-alert('Di ma-play Ghi! Reason: '+e.message+'\n\nTry mo direct open:\nhttps://airius-the-creator.github.io/'+encodeURI(songs[idx].file));
-});
-}
-function pause(){audio.pause(); isPlay=false; playIcon.textContent='▶'; statusEl.textContent='⏸ Paused'; render();}
-function toggle(){isPlay?pause():play();}
-function next(){load((idx+1)%songs.length);play();}
-
-audio.addEventListener('error', (e)=>{
-statusEl.textContent='❌ File not found! Check filename sa GitHub - dapat exact same!';
-statusEl.style.color='#ff2d2d';
-});
-
-load(0);
+play(1);
 </script>
+<br><center><a href="./">← Home</a></center><br>
 </body>
 </html>
