@@ -3,43 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Airius The Creator | 9 Languages</title>
+<title>Airius The Creator</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
-*{margin:0;padding:0;box-sizing:border-box;font-family:'JetBrains Mono',monospace}
-body{background:#050a14;color:#fff;padding:12px;min-height:100vh}
-.container{max-width:750px;margin:0 auto}
-.header{text-align:center;padding:30px 20px;border:2px solid #00d4ff44;border-radius:25px;background:rgba(0,212,255,0.05);box-shadow:0 0 40px rgba(0,212,255,0.15)}
-.avatar{width:90px;height:90px;background:linear-gradient(135deg,#00d4ff,#7000ff);border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:40px;box-shadow:0 0 25px #00d4ff}
-h1{color:#00d4ff;font-size:27px;text-shadow:0 0 15px #00d4ff}
-.sub{color:#00ff88;font-size:12px;margin:6px 0}
-.badge{display:inline-block;background:#00d4ff22;border:1px solid #00d4ff55;color:#00d4ff;padding:5px 11px;border-radius:20px;font-size:10px;margin:4px}
-.langs{margin:20px 0;padding:18px;background:rgba(0,0,0,0.6);border-radius:20px;border:1px solid #ffffff11}
-.bar{display:flex;height:16px;border-radius:10px;overflow:hidden;margin:12px 0}
+*{margin:0;padding:0;box-sizing:border-box;font-family:monospace}
+body{background:#050a14;color:#fff;padding:12px}
+.container{max-width:700px;margin:0 auto}
+.header{text-align:center;padding:25px;border:2px solid #00d4ff44;border-radius:25px;background:rgba(0,212,255,0.05)}
+.avatar{width:80px;height:80px;background:linear-gradient(135deg,#00d4ff,#7000ff);border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:35px}
+h1{color:#00d4ff;font-size:24px}
+.badge{display:inline-block;background:#00d4ff22;border:1px solid #00d4ff55;color:#00d4ff;padding:4px 10px;border-radius:15px;font-size:10px;margin:3px}
+.langs{margin:15px 0;padding:15px;background:#0009;border-radius:15px}
+.bar{display:flex;height:14px;border-radius:10px;overflow:hidden;margin:10px 0}
 .bar div{height:100%}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;text-align:left;font-size:11px;margin-top:12px}
-.dot{width:9px;height:9px;border-radius:50%;display:inline-block;margin-right:5px}
-.links{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0}
-.btn{padding:9px 14px;border-radius:20px;text-decoration:none;font-size:11px;font-weight:bold;border:1px solid #00d4ff55;color:#00d4ff;background:rgba(0,212,255,0.08)}
-.tulips-wrap{margin:25px 0;padding:25px 15px;background:linear-gradient(180deg,rgba(255,105,180,0.12) 0%,rgba(0,0,0,0.5) 100%);border:1px solid rgba(255,105,180,0.25);border-radius:25px;text-align:center}
-.tulips{display:flex;justify-content:center;align-items:flex-end;gap:12px;height:130px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;font-size:11px;text-align:left}
+.links{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:15px 0}
+.btn{padding:8px 14px;border-radius:20px;text-decoration:none;font-size:11px;border:1px solid #00d4ff55;color:#00d4ff;background:rgba(0,212,255,0.08)}
+.tulips-wrap{margin:20px 0;padding:20px;text-align:center;background:rgba(255,105,180,0.08);border:1px solid rgba(255,105,180,0.2);border-radius:20px}
+.tulips{display:flex;justify-content:center;gap:10px;height:120px;align-items:flex-end}
 .tulip{display:flex;flex-direction:column;align-items:center;animation:sway 3s ease-in-out infinite}
-.tulip:nth-child(2){animation-delay:0.2s}
-.tulip:nth-child(3){animation-delay:0.4s;transform:scale(1.15)}
-.tulip:nth-child(4){animation-delay:0.6s}
-.tulip:nth-child(5){animation-delay:0.8s}
-@keyframes sway{0%,100%{transform:rotate(-2deg) translateY(0)}50%{transform:rotate(2deg) translateY(-6px)}}
-.flower{width:38px;height:45px;position:relative}
-.petal{position:absolute;width:18px;height:32px;background:linear-gradient(180deg,#ff9ec8 0%,#ff5fa8 100%);border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;top:0}
-.petal:nth-child(1){left:2px;transform:rotate(-15deg)}
-.petal:nth-child(2){left:10px;z-index:2;background:linear-gradient(180deg,#ffb5d4 0%,#ff7abb 100%)}
-.petal:nth-child(3){left:18px;transform:rotate(15deg)}
-.stem{width:4px;height:45px;background:linear-gradient(180deg,#6abf6a,#3a8a3a);border-radius:2px;margin-top:-5px}
-.leaf{width:18px;height:22px;background:#4a9a4a;border-radius:0 50% 0 50%;margin-top:-18px;margin-left:8px;transform:rotate(20deg)}
-.verse{margin-top:20px;padding:15px;background:rgba(255,255,255,0.05);border-radius:15px;border-left:3px solid #ff8ec2}
-.verse-text{color:#fff;font-size:13px;font-style:italic;line-height:1.6}
-.verse-ref{color:#00d4ff;font-size:12px;font-weight:bold;margin-top:8px;letter-spacing:1px}
-.foot{text-align:center;font-size:9px;opacity:0.3;margin-top:18px}
+@keyframes sway{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg) translateY(-5px)}}
+.flower{width:36px;height:40px;position:relative}.petal{position:absolute;width:16px;height:28px;background:linear-gradient(180deg,#ffb5d4,#ff5fa8);border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;top:0}.petal:nth-child(1){left:2px;transform:rotate(-15deg)}.petal:nth-child(2){left:10px;z-index:2}.petal:nth-child(3){left:18px;transform:rotate(15deg)}.stem{width:3px;height:40px;background:#3a8a3a;margin-top:-4px}.leaf{width:16px;height:20px;background:#4a9a4a;border-radius:0 50% 0 50%;margin-top:-16px;margin-left:6px;transform:rotate(20deg)}
+.verse{margin-top:15px;padding:12px;background:rgba(255,255,255,0.05);border-radius:12px;border-left:3px solid #ff8ec2}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px}
+.bio{font-size:12px;line-height:1.6;color:#aaa;margin-top:10px;max-width:480px;margin-left:auto;margin-right:auto}
 </style>
 </head>
 <body>
@@ -47,18 +33,15 @@ h1{color:#00d4ff;font-size:27px;text-shadow:0 0 15px #00d4ff}
 <div class="header">
 <div class="avatar">👨‍💻</div>
 <h1>Airius The Creator</h1>
-<p class="sub">Jonh Earl Suarez Delgado • Hinigaran, Negros</p>
-<p style="font-size:11px;opacity:0.6;margin-top:5px">try your best and the victory shall come</p>
+<p class="bio">hey im airius. i build random things on the internet when i get bored. mostly web stuff. still learning so a lot of this is probably messy but it works lol.</p>
 <div style="margin-top:10px">
 <span class="badge">🚀 9 Languages</span>
 <span class="badge">💻 Full Stack</span>
-<span class="badge">🌟 Hinigaran Pride</span>
-<span class="badge">♒ Aquarius</span>
+<span class="badge">♒ Aquarius Live</span>
 </div>
 </div>
 
 <div class="langs">
-<h3 style="color:#00d4ff;font-size:13px">💻 Languages - 6 Main + Other</h3>
 <div class="bar">
 <div style="width:77.1%;background:#e34c26"></div>
 <div style="width:6.5%;background:#4F5D95"></div>
@@ -75,20 +58,19 @@ h1{color:#00d4ff;font-size:27px;text-shadow:0 0 15px #00d4ff}
 <p><span class="dot" style="background:#f34b7d"></span>C++ 4.9%</p>
 <p><span class="dot" style="background:#178600"></span>C# 1.9%</p>
 <p><span class="dot" style="background:#3572A5"></span>Python 1.7%</p>
-<p><span class="dot" style="background:#555"></span>Rust • Go • Java 2.9%</p>
+<p><span class="dot" style="background:#555"></span>Rust 1.0%</p>
+<p><span class="dot" style="background:#555"></span>Go 1.0%</p>
+<p><span class="dot" style="background:#555"></span>Java 0.9%</p>
 </div>
 </div>
 
 <div class="links">
-<a class="btn" href="https://github.com/Airius-The-Creator">⭐ GitHub</a>
-<a class="btn" href="https://www.facebook.com/jonhearl.suarezdelgado.2024">📘 Facebook</a>
-<a class="btn" href="https://m.me/jonhearl.suarezdelgado.2024">💬 Messenger</a>
-<a class="btn" href="#">📸 Instagram</a>
-<a class="btn" href="#">🎮 Projects</a>
+<a class="btn" href="https://github.com/Airius-The-Creator" target="_blank">GitHub</a>
+<a class="btn" href="https://www.facebook.com/jonhearl.suarezdelgado.2024" target="_blank">Facebook</a>
+<a class="btn" href="https://www.instagram.com/" target="_blank">Instagram</a>
 <a class="btn" href="aquarius.html">♒ Aquarius Live</a>
 </div>
 
-<!-- 5 PINK TULIPS + BIBLE VERSE 60:22 -->
 <div class="tulips-wrap">
 <div class="tulips">
 <div class="tulip"><div class="flower"><div class="petal"></div><div class="petal"></div></div><div class="stem"></div><div class="leaf"></div></div>
@@ -97,14 +79,11 @@ h1{color:#00d4ff;font-size:27px;text-shadow:0 0 15px #00d4ff}
 <div class="tulip"><div class="flower"><div class="petal"></div><div class="petal"></div></div><div class="stem"></div><div class="leaf"></div></div>
 <div class="tulip"><div class="flower"><div class="petal"></div><div class="petal"></div></div><div class="stem"></div><div class="leaf"></div></div>
 </div>
-
 <div class="verse">
-<p class="verse-text">"When the time is right, I, the Lord, will make it happen."</p>
-<p class="verse-ref">ISAIAH 60:22</p>
+<p style="font-size:12px;font-style:italic">"When the time is right, I, the Lord, will make it happen."</p>
+<p style="color:#00d4ff;font-size:11px;margin-top:6px">ISAIAH 60:22</p>
 </div>
 </div>
-
-<p class="foot">© 2026 Airius The Creator • Isaiah 60:22 • 9 Languages</p>
 </div>
 </body>
 </html>
