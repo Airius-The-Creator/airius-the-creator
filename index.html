@@ -1,54 +1,84 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Airius The Creator</title> <style> *{margin:0;padding:0;box-sizing:border-box;font-family:monospace} body{background:#050a14;color:#fff;padding:12px;overflow-x:hidden;position:relative}.container{max-width:700px;margin:0 auto;position:relative;z-index:2}.card{margin:12px 0;padding:16px;background:#0009;border-radius:16px;border:1px solid #ffffff12}.title{color:#00d4ff;font-size:12px;font-weight:bold;margin-bottom:8px}.text{font-size:11px;line-height:1.7;color:#ccc}.dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px}.bar{display:flex;height:14px;border-radius:10px;overflow:hidden;margin:10px 0}.bar div{height:100%}.grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:11px;text-align:left}.tulips{display:flex;justify-content:center;gap:10px;height:110px;align-items:flex-end;margin:10px 0}.tulip{display:flex;flex-direction:column;align-items:center;animation:sway 3s ease-in-out infinite} @keyframes sway{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg) translateY(-5px)}}.flower{width:36px;height:40px;position:relative}.petal{position:absolute;width:16px;height:28px;background:linear-gradient(180deg,#ffb5d4,#ff5fa8);border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;top:0}.petal:nth-child(1){left:2px;transform:rotate(-15deg)}.petal:nth-child(2){left:10px;z-index:2}.petal:nth-child(3){left:18px;transform:rotate(15deg)}.stem{width:3px;height:40px;background:#3a8a3a;margin-top:-4px}.leaf{width:16px;height:20px;background:#4a9a4a;border-radius:0 50% 0 50%;margin-top:-16px;margin-left:6px;transform:rotate(20deg)}.stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1}.star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;animation:twinkle 2s infinite alternate} @keyframes twinkle{0%{opacity:0.2;transform:scale(0.8)}100%{opacity:1;transform:scale(1.5);box-shadow:0 0 6px #00d4ff}}.star:nth-child(1){top:5%;left:10%}.star:nth-child(2){top:15%;left:80%;animation-delay:0.3s}.star:nth-child(3){top:25%;left:30%;animation-delay:0.6s}.star:nth-child(4){top:35%;left:70%;animation-delay:0.9s}.star:nth-child(5){top:10%;left:50%;animation-delay:1.2s}.star:nth-child(6){top:45%;left:20%;animation-delay:0.2s}.star:nth-child(7){top:55%;left:90%;animation-delay:0.5s}.star:nth-child(8){top:65%;left:40%;animation-delay:0.8s}.star:nth-child(9){top:75%;left:60%;animation-delay:1.1s}.star:nth-child(10){top:85%;left:15%;animation-delay:0.4s}.header-card{border:2px solid #00d4ff!important;animation:blinkBlue 1.5s infinite alternate;box-shadow:0 0 10px #00d4ff44;text-align:center} @keyframes blinkBlue{0%{border-color:#00d4ff44;box-shadow:0 0 5px #00d4ff22}100%{border-color:#00d4ff;box-shadow:0 0 20px #00d4ffaa}}.links-under{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;margin-top:10px}.mini-btn{padding:5px 10px;border-radius:15px;text-decoration:none;font-size:9px;border:1px solid #00d4ff55;color:#00d4ff;background:rgba(0,212,255,0.1);transition:0.2s}.mini-btn:hover{background:#00d4ff;color:#000;box-shadow:0 0 10px #00d4ff}.profile-center{width:65px;height:65px;background:linear-gradient(135deg,#00d4ff,#7000ff);border-radius:50%;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:28px;border:2px solid #00d4ff55}
- #geometry-section{border:2px solid #00ff88!important;padding:0!important;overflow:hidden}
- #geo-wrap{position:relative;width:100%;height:520px;background:#0a0a14}
- #c{width:100%;height:100%;display:block;touch-action:none}
- #info{position:absolute;top:8px;left:8px;background:rgba(0,0,0,0.92);color:#00ff88;padding:10px;border-radius:10px;font:10px monospace;border:1px solid #00ff88;max-width:165px;z-index:10;max-height:60vh;overflow-y:auto}
- #controls{position:absolute;top:8px;right:8px;z-index:20;display:flex;flex-direction:column;gap:8px}
-.btn{padding:12px 16px;border-radius:12px;border:0;font:bold 12px monospace;background:#00ff88;color:#000}
-.btn-red{background:#ff0066;color:#fff}
- #hint{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);background:rgba(0,255,136,0.15);color:#00ff88;padding:8px 16px;border-radius:20px;font:11px monospace;border:1px solid #00ff88}
-.aqua-icon{font-size:50px;animation:float 3s ease-in-out infinite} @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
- </style> </head> <body> <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div> <div class="container"> <div class="card header-card" style="background:rgba(0,212,255,0.05)"> <div class="profile-center">👨‍💻</div> <h1 style="color:#00d4ff;font-size:22px">Airius The Creator</h1> <p class="text" style="color:#fff;font-size:12px;margin-top:5px;font-weight:bold">Jonh Earl Suarez Delgado</p> <p class="text" style="color:#00ff88;font-size:9px;margin-top:3px">Jan 25, 2008 • Aquarius ♒</p> <div class="links-under"> <a class="mini-btn" href="https://github.com/Airius-The-Creator" target="_blank">GitHub</a> <a class="mini-btn" href="https://www.facebook.com/jonhearl.suarezdelgado.2024" target="_blank">Facebook</a> <a class="mini-btn" href="https://www.instagram.com/" target="_blank">Instagram</a> </div> </div> <div class="card"> <p class="title">💻 LANGUAGE - 9 Languages</p> <div class="bar"><div style="width:77.1%;background:#e34c26"></div><div style="width:6.5%;background:#4F5D95"></div><div style="width:5%;background:#f1e05a"></div><div style="width:4.9%;background:#f34b7d"></div><div style="width:1.9%;background:#178600"></div><div style="width:1.7%;background:#3572A5"></div><div style="width:2.9%;background:#555"></div></div> <div class="grid"> <p><span class="dot" style="background:#e34c26"></span>HTML 77.1%</p> <p><span class="dot" style="background:#4F5D95"></span>PHP 6.5%</p> <p><span class="dot" style="background:#f1e05a"></span>JavaScript 5%</p> <p><span class="dot" style="background:#f34b7d"></span>C++ 4.9%</p> <p><span class="dot" style="background:#178600"></span>C# 1.9%</p> <p><span class="dot" style="background:#3572A5"></span>Python 1.7%</p> <p><span class="dot" style="background:#555"></span>Rust 1.0%</p> <p><span class="dot" style="background:#555"></span>Go 1.0%</p> <p><span class="dot" style="background:#555"></span>Java 0.9%</p> </div> </div> <div class="card" style="text-align:center;background:rgba(255,105,180,0.08);border:1px solid rgba(255,105,180,0.2)"> <div class="tulips"><div class="tulip"><div class="flower"><div class="petal"></div><div class="petal"></div></div><div class="stem"></div><div class="leaf"></div></div><div class="tulip"><div class="flower"><div class="petal"></div><div class="petal"></div></div><div class="stem"></div><div class="leaf"></div></div><div class="tulip"><div class="flower"><div class="petal"></div><div class="petal"></div></div><div class="stem"></div><div class="leaf"></div></div><div class="tulip"><div class="flower"><div class="petal"></div><div class="petal"></div></div><div class="stem"></div><div class="leaf"></div></div><div class="tulip"><div class="flower"><div class="petal"></div><div class="petal"></div></div><div class="stem"></div><div class="leaf"></div></div></div> <p style="font-size:12px;font-style:italic">"When the time is right, I, the Lord, will make it happen."</p><p style="color:#00d4ff;font-size:11px;margin-top:6px">ISAIAH 60:22</p> </div> <div class="card"><p class="title">🏫 ELEMENTARY</p><p class="text">Angela L. Colmenares Elementary School</p></div> <div class="card"><p class="title">🎓 HIGHSCHOOL</p><p class="text">Hinigaran Institute Incorporated</p></div> <div class="card"><p class="text">hey im airius. i build random things on the internet when i get bored. mostly web stuff. still learning so a lot of this is probably messy but it works lol.</p></div> <div class="card"><p class="title">📍 LOCATION</p><p class="text">Hinigaran, Negros Occidental, Philippines 6110</p></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Airius The Creator</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:monospace}
+body{background:#050a14;color:#fff;padding:12px;overflow-x:hidden;position:relative}
+.container{max-width:700px;margin:0 auto;position:relative;z-index:2}
+.card{margin:12px 0;padding:16px;background:#0009;border-radius:16px;border:1px solid #ffffff12}
+.title{color:#00d4ff;font-size:12px;font-weight:bold;margin-bottom:8px}
+.text{font-size:11px;line-height:1.7;color:#ccc}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px}
+.bar{display:flex;height:14px;border-radius:10px;overflow:hidden;margin:10px 0}.bar div{height:100%}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:11px;text-align:left}
+.tulips{display:flex;justify-content:center;gap:10px;height:110px;align-items:flex-end;margin:10px 0}
+.tulip{display:flex;flex-direction:column;align-items:center;animation:sway 3s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg) translateY(-5px)}}
+.flower{width:36px;height:40px;position:relative}.petal{position:absolute;width:16px;height:28px;background:linear-gradient(180deg,#ffb5d4,#ff5fa8);border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;top:0}.petal:nth-child(1){left:2px;transform:rotate(-15deg)}.petal:nth-child(2){left:10px;z-index:2}.petal:nth-child(3){left:18px;transform:rotate(15deg)}.stem{width:3px;height:40px;background:#3a8a3a;margin-top:-4px}.leaf{width:16px;height:20px;background:#4a9a4a;border-radius:0 50% 0 50%;margin-top:-16px;margin-left:6px;transform:rotate(20deg)}
+.stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;animation:twinkle 2s infinite alternate}
+@keyframes twinkle{0%{opacity:0.2;transform:scale(0.8)}100%{opacity:1;transform:scale(1.5);box-shadow:0 0 6px #00d4ff}}
+.star:nth-child(1){top:5%;left:10%}.star:nth-child(2){top:15%;left:80%;animation-delay:0.3s}.star:nth-child(3){top:25%;left:30%;animation-delay:0.6s}.star:nth-child(4){top:35%;left:70%;animation-delay:0.9s}.star:nth-child(5){top:10%;left:50%;animation-delay:1.2s}.star:nth-child(6){top:45%;left:20%;animation-delay:0.2s}.star:nth-child(7){top:55%;left:90%;animation-delay:0.5s}.star:nth-child(8){top:65%;left:40%;animation-delay:0.8s}.star:nth-child(9){top:75%;left:60%;animation-delay:1.1s}.star:nth-child(10){top:85%;left:15%;animation-delay:0.4s}
+.header-card{border:2px solid #00d4ff !important;animation:blinkBlue 1.5s infinite alternate;box-shadow:0 0 10px #00d4ff44;text-align:center}
+@keyframes blinkBlue{0%{border-color:#00d4ff44;box-shadow:0 0 5px #00d4ff22}100%{border-color:#00d4ff;box-shadow:0 0 20px #00d4ffaa}}
 
-<!-- AQUARIUS LIVE - FULL - NASA LOOB NA -->
-<div id="aquarius-live-section" class="card" style="border:2px solid #00d4ff!important;background:rgba(0,212,255,0.05);text-align:center">
-<p class="aqua-icon">♒</p>
-<h1 style="color:#00d4ff;font-size:22px;margin:8px 0">Aquarius Live</h1>
-<p class="text" style="color:#fff;font-size:12px;text-align:center">Jonh Earl Suarez Delgado</p>
-<p class="text" style="color:#00ff88;font-size:11px;margin-top:4px;text-align:center">Born: January 25, 2008 • Hinigaran, Negros</p>
-<p class="text" style="color:#888;font-size:10px;margin-top:4px;text-align:center">Aquarius ♒ • Water Bearer</p>
+/* LINKS SA ILALIM NG NAME - PINALIIT PARA MAGKASYA */
+.links-under{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+.mini-btn{padding:5px 10px;border-radius:15px;text-decoration:none;font-size:9px;border:1px solid #00d4ff55;color:#00d4ff;background:rgba(0,212,255,0.1);transition:0.2s}
+.mini-btn:hover{background:#00d4ff;color:#000;box-shadow:0 0 10px #00d4ff}
+.profile-center{width:65px;height:65px;background:linear-gradient(135deg,#00d4ff,#7000ff);border-radius:50%;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:28px;border:2px solid #00d4ff55}
+</style>
+</head>
+<body>
+<div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+
+<div class="container">
+
+<!-- BALIK SA UNA - GITNA LAHAT -->
+<div class="card header-card" style="background:rgba(0,212,255,0.05)">
+<div class="profile-center">👨‍💻</div>
+<h1 style="color:#00d4ff;font-size:22px">Airius The Creator</h1>
+<p class="text" style="color:#fff;font-size:12px;margin-top:5px;font-weight:bold">Jonh Earl Suarez Delgado</p>
+<p class="text" style="color:#00ff88;font-size:9px;margin-top:3px">Jan 25, 2008 • Aquarius ♒</p>
+
+<!-- LINKS SA ILALIM NG NAME - PINALIIT PARA MAGKASYA -->
+<div class="links-under">
+<a class="mini-btn" href="https://github.com/Airius-The-Creator" target="_blank">GitHub</a>
+<a class="mini-btn" href="https://www.facebook.com/jonhearl.suarezdelgado.2024" target="_blank">Facebook</a>
+<a class="mini-btn" href="https://www.instagram.com/" target="_blank">Instagram</a>
+<a class="mini-btn" href="./aquarius.html">♒ Aquarius Live</a>
 </div>
-<div class="card"><p class="title">About me as Aquarius ♒</p><p class="text">hey so ako pala yung gumawa nito lol. Ako si Airius, Aquarius ako born January 25, 2008. Kaya siguro mahilig ako mag build ng random things sa internet pag nabo-bored ako haha.<br><br>Sabi nila yung mga Aquarius daw is independent, creative, and medyo weird daw minsan pero in a good way. Totoo naman siguro kasi di ako mahilig sumunod sa usual, gusto ko yung trip ko lang. Kaya yung codes ko minsan messy pero gumagana naman lol.<br><br>Water bearer daw kami, yung nagbibigay ng knowledge sa mundo. Kaya siguro gusto ko mag share ng mga ginagawa ko sa GitHub kahit messy pa. Still learning pa lang ako pero enjoy lang.</p></div>
-<div class="card"><p class="title">Why I made this page</p><p class="text">Ginawa ko tong Aquarius Live page kasi syempre Aquarius ako diba, so dapat may sarili akong page about sa zodiac ko haha. Wala lang, trip ko lang lagyan ng stars na twinkle twinkle para maganda tingnan.<br><br>January 25 2008 ako pinanganak, so talagang Aquarius na Aquarius. Pag Aquarius ka daw mahilig ka sa tech, sa future, sa mga bagay na bago. Kaya siguro nahilig ako sa web stuff.<br><br>Di to gawa ng AI ha, ako mismo nag code nito. Pinagpuyatan ko to nung bored ako sa bahay. Medyo kalat pa pero ayos na yan, at least may sarili akong Aquarius page.</p></div>
-<div class="card" style="text-align:center"><p class="title">Aquarius Traits na relate ako</p><p class="text" style="text-align:left">- Independent daw - oo totoo, gusto ko solo ko lang ginagawa projects ko<br>- Creative / Innovative - mahilig ako mag isip ng weird ideas<br>- Loyal sa tropa - pag tropa, tropa talaga<br>- Medyo stubborn minsan - pag may gusto akong gawin, gagawin ko talaga haha<br>- Future-minded - mahilig ako sa mga bago sa tech</p></div>
-<div class="card" style="text-align:center;background:rgba(255,105,180,0.06);border:1px solid rgba(255,105,180,0.15)"><p style="font-size:20px;letter-spacing:8px;margin-bottom:10px">✦ ✧ ✦<br>✧ ♒ ✧<br>✦ ✧ ✦</p><p style="font-size:11px;font-style:italic;color:#aaa">"Aquarius ka? Same tayo! January 25, 2008 - we think different."</p><p style="font-size:10px;color:#00d4ff;margin-top:6px">- Airius, 2008 Aquarius</p></div>
+</div>
 
-<!-- GEOMETRY SA PINAKA ILALIM -->
-<div class="card" id="geometry-section"><p class="title" style="color:#00ff88;padding:16px 16px 0">📐 GEOMETRY MAX - A-G - DRAG & ADD!</p><div id="geo-wrap"><div id="info"></div><div id="controls"><button class="btn" onclick="addPoint()">➕ ADD POINT</button><button class="btn btn-red" onclick="resetPoints()">🔄 RESET</button></div><div id="hint">👆 DRAG A-G • ADD</div><canvas id="c"></canvas></div></div>
+<div class="card">
+<p class="title">💻 LANGUAGE - 9 Languages</p>
+<div class="bar"><div style="width:77.1%;background:#e34c26"></div><div style="width:6.5%;background:#4F5D95"></div><div style="width:5%;background:#f1e05a"></div><div style="width:4.9%;background:#f34b7d"></div><div style="width:1.9%;background:#178600"></div><div style="width:1.7%;background:#3572A5"></div><div style="width:2.9%;background:#555"></div></div>
+<div class="grid">
+<p><span class="dot" style="background:#e34c26"></span>HTML 77.1%</p>
+<p><span class="dot" style="background:#4F5D95"></span>PHP 6.5%</p>
+<p><span class="dot" style="background:#f1e05a"></span>JavaScript 5%</p>
+<p><span class="dot" style="background:#f34b7d"></span>C++ 4.9%</p>
+<p><span class="dot" style="background:#178600"></span>C# 1.9%</p>
+<p><span class="dot" style="background:#3572A5"></span>Python 1.7%</p>
+<p><span class="dot" style="background:#555"></span>Rust 1.0%</p>
+<p><span class="dot" style="background:#555"></span>Go 1.0%</p>
+<p><span class="dot" style="background:#555"></span>Java 0.9%</p>
+</div>
+</div>
+
+<div class="card" style="text-align:center;background:rgba(255,105,180,0.08);border:1px solid rgba(255,105,180,0.2)">
+<div class="tulips"><div class="tulip"><div class="flower"><div class="petal"></div><div class="petal"></div></div><div class="stem"></div><div class="leaf"></div></div><div class="tulip"><div class="flower"><div class="petal"></div><div class="petal"></div></div><div class="stem"></div><div class="leaf"></div></div><div class="tulip"><div class="flower"><div class="petal"></div><div class="petal"></div></div><div class="stem"></div><div class="leaf"></div></div><div class="tulip"><div class="flower"><div class="petal"></div><div class="petal"></div></div><div class="stem"></div><div class="leaf"></div></div><div class="tulip"><div class="flower"><div class="petal"></div><div class="petal"></div></div><div class="stem"></div><div class="leaf"></div></div></div>
+<p style="font-size:12px;font-style:italic">"When the time is right, I, the Lord, will make it happen."</p><p style="color:#00d4ff;font-size:11px;margin-top:6px">ISAIAH 60:22</p>
+</div>
+
+<div class="card"><p class="title">🏫 ELEMENTARY</p><p class="text">Angela L. Colmenares Elementary School</p></div>
+<div class="card"><p class="title">🎓 HIGHSCHOOL</p><p class="text">Hinigaran Institute Incorporated</p></div>
+<div class="card"><p class="text">hey im airius. i build random things on the internet when i get bored. mostly web stuff. still learning so a lot of this is probably messy but it works lol.</p></div>
+<div class="card"><p class="title">📍 LOCATION</p><p class="text">Hinigaran, Negros Occidental, Philippines 6110</p></div>
 
 </div>
-<script>
-const canvas=document.getElementById('c');const ctx=canvas.getContext('2d');
-function resize(){canvas.width=document.getElementById('geo-wrap').clientWidth;canvas.height=document.getElementById('geo-wrap').clientHeight;draw();}
-const colors=['#ff0066','#00ccff','#ffcc00','#aa00ff','#00ffaa','#ff8800','#ff00aa','#00ff88'];
-const labels=['A','B','C','D','E','F','G','H'];
-let points=[];
-function init(){points=[];const cx=canvas.width/2||350,cy=canvas.height/2||250;for(let i=0;i<3;i++){const ang=i*120*Math.PI/180;points.push({x:cx+Math.cos(ang)*80,y:cy+Math.sin(ang)*80,color:colors[i],label:labels[i]});}}
-function dist(a,b){return Math.hypot(a.x-b.x,a.y-b.y)}
-function polygonArea(pts){let area=0;for(let i=0;i<pts.length;i++){let j=(i+1)%pts.length;area+=pts[i].x*pts[j].y-pts[j].x*pts[i].y;}return Math.abs(area)/2;}
-function addPoint(){if(points.length>=7){alert('MAX G NA GHI! 7 POINTS NA!');return;}const cx=canvas.width/2,cy=canvas.height/2;const ang=Math.random()*360*Math.PI/180;const r=70+Math.random()*50;points.push({x:cx+Math.cos(ang)*r,y:cy+Math.sin(ang)*r,color:colors[points.length],label:labels[points.length]});draw();}
-function resetPoints(){init();draw();}
-let drag=null;
-function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);ctx.strokeStyle='rgba(255,255,255,0.05)';ctx.lineWidth=1;for(let i=0;i<canvas.width;i+=30){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,canvas.height);ctx.stroke()}for(let i=0;i<canvas.height;i+=30){ctx.beginPath();ctx.moveTo(0,i);ctx.lineTo(canvas.width,i);ctx.stroke()}if(points.length>2){ctx.fillStyle='rgba(0,255,136,0.12)';ctx.beginPath();ctx.moveTo(points[0].x,points[0].y);points.forEach(p=>ctx.lineTo(p.x,p.y));ctx.closePath();ctx.fill();ctx.strokeStyle='rgba(0,255,136,0.6)';ctx.lineWidth=2;ctx.stroke();}for(let i=0;i<points.length;i++){const p1=points[i],p2=points[(i+1)%points.length];if(points.length>2||i==0){ctx.strokeStyle='#00ff88';ctx.lineWidth=2.5;ctx.beginPath();ctx.moveTo(p1.x,p1.y);ctx.lineTo(p2.x,p2.y);ctx.stroke();const mx=(p1.x+p2.x)/2,my=(p1.y+p2.y)/2;if(dist(p1,p2)>30){ctx.fillStyle='rgba(0,0,0,0.85)';ctx.fillRect(mx-20,my-10,40,12);ctx.fillStyle='#00ff88';ctx.font='bold 9px monospace';ctx.textAlign='center';ctx.fillText(dist(p1,p2).toFixed(0),mx,my-2);}}}points.forEach(p=>{ctx.shadowColor=p.color;ctx.shadowBlur=20;ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,20,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;ctx.fillStyle='#000';ctx.beginPath();ctx.arc(p.x,p.y,16,0,Math.PI*2);ctx.fill();ctx.fillStyle='#fff';ctx.font='bold 13px monospace';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(p.label,p.x,p.y);});let per=0;for(let i=0;i<points.length;i++)per+=dist(points[i],points[(i+1)%points.length]);let area=points.length>2?polygonArea(points):0;let html=`<b>📐 ${points.length} POINTS</b><br><br>`;points.forEach(p=>{html+=`<span style="color:${p.color}">● ${p.label}</span> (${p.x|0},${p.y|0})<br>`});html+=`<br>Perimeter ${per.toFixed(0)}<br>`;if(area>0)html+=`Area ${area.toFixed(0)}<br>`;document.getElementById('info').innerHTML=html;}
-function getPos(e){const t=e.touches?e.touches[0]:e;const r=canvas.getBoundingClientRect();return{x:t.clientX-r.left,y:t.clientY-r.top};}
-canvas.addEventListener('mousedown',e=>{const m=getPos(e);points.forEach(p=>{if(dist(m,p)<35)drag=p;});});
-canvas.addEventListener('touchstart',e=>{const m=getPos(e);points.forEach(p=>{if(dist(m,p)<45)drag=p;});},{passive:false});
-canvas.addEventListener('mousemove',e=>{if(drag){const m=getPos(e);drag.x=m.x;drag.y=m.y;draw();}});
-canvas.addEventListener('touchmove',e=>{if(drag){e.preventDefault();const m=getPos(e);drag.x=m.x;drag.y=m.y;draw();}},{passive:false});
-canvas.addEventListener('mouseup',()=>drag=null);
-canvas.addEventListener('touchend',()=>drag=null);
-addEventListener('resize',resize);
-init();setTimeout(resize,100);
-</script>
 </body>
 </html>
