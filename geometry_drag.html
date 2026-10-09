@@ -1,130 +1,103 @@
 <!DOCTYPE html>
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GEOMETRY - DRAGGABLE MATH</title>
+<title>GEOMETRY MAX</title>
 <style>
- body{margin:0;overflow:hidden;background:#0a0a14;font-family:monospace}
- canvas{display:block}
- #info{position:fixed;top:10px;left:10px;background:rgba(0,0,0,0.85);color:#00ff88;padding:12px;border-radius:10px;font:11px monospace;border:1px solid #00ff88;min-width:200px}
- #hint{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);background:rgba(0,255,136,0.1);color:#00ff88;padding:8px 16px;border-radius:20px;font:11px monospace;border:1px solid #00ff88}
+ body{margin:0;overflow:hidden;background:#0a0a14;font-family:monospace;touch-action:none}
+ canvas{display:block;width:100vw;height:100vh}
+ #info{position:fixed;top:8px;left:8px;background:rgba(0,0,0,0.92);color:#00ff88;padding:10px;border-radius:10px;font:10px monospace;border:1px solid #00ff88;max-width:165px;z-index:10;max-height:60vh;overflow-y:auto}
+ #controls{position:fixed;top:8px;right:8px;z-index:20;display:flex;flex-direction:column;gap:8px}
+.btn{background:#00ff88;color:#000;border:0;padding:12px 16px;border-radius:12px;font:bold 12px monospace;box-shadow:0 4px 15px rgba(0,255,136,0.4)}
+.btn:active{transform:scale(0.95)}
+.btn-red{background:#ff0066;color:#fff}
+ #hint{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);background:rgba(0,255,136,0.15);color:#00ff88;padding:8px 16px;border-radius:20px;font:11px monospace;border:1px solid #00ff88;z-index:10}
 </style>
 </head>
 <body>
 <div id="info"></div>
-<div id="hint">👆 DRAG MO YUNG 3 POINTS • GEOMETRY POWER!</div>
+<div id="controls">
+ <button class="btn" onclick="addPoint()">➕ ADD POINT</button>
+ <button class="btn btn-red" onclick="resetPoints()">🔄 RESET</button>
+</div>
+<div id="hint">👆 DRAG A-G • ADD</div>
 <canvas id="c"></canvas>
 <script>
-const canvas=document.getElementById('c');
-const ctx=canvas.getContext('2d');
-canvas.width=innerWidth; canvas.height=innerHeight;
-
-let points=[
- {x:300,y:300,color:'#ff0066',label:'A'},
- {x:600,y:200,color:'#00ccff',label:'B'},
- {x:500,y:500,color:'#ffcc00',label:'C'}
-];
-let drag=null;
-
-function dist(p1,p2){return Math.hypot(p1.x-p2.x,p1.y-p2.y)}
-function angle(p1,p2,p3){
- const a=dist(p2,p3), b=dist(p1,p3), c=dist(p1,p2);
- return Math.acos((b*b+c*c-a*a)/(2*b*c))*180/Math.PI;
+const canvas=document.getElementById('c'); const ctx=canvas.getContext('2d');
+function resize(){canvas.width=innerWidth;canvas.height=innerHeight; draw();}
+const colors=['#ff0066','#00ccff','#ffcc00','#aa00ff','#00ffaa','#ff8800','#ff00aa','#00ff88'];
+const labels=['A','B','C','D','E','F','G','H'];
+let points=[];
+function init(){
+ points=[];
+ const cx=innerWidth/2, cy=innerHeight/2;
+ for(let i=0;i<3;i++){
+  const ang=i*120*Math.PI/180;
+  points.push({x:cx+Math.cos(ang)*80,y:cy+Math.sin(ang)*80,color:colors[i],label:labels[i]});
+ }
 }
-
+function dist(a,b){return Math.hypot(a.x-b.x,a.y-b.y)}
+function polygonArea(pts){
+ let area=0; for(let i=0;i<pts.length;i++){ let j=(i+1)%pts.length; area+=pts[i].x*pts[j].y-pts[j].x*pts[i].y; } return Math.abs(area)/2;
+}
+function addPoint(){
+ if(points.length>=7){alert('MAX G NA GHI! 7 POINTS NA!'); return;}
+ const cx=innerWidth/2, cy=innerHeight/2;
+ const ang=Math.random()*360*Math.PI/180;
+ const r=70+Math.random()*50;
+ points.push({x:cx+Math.cos(ang)*r,y:cy+Math.sin(ang)*r,color:colors[points.length],label:labels[points.length]});
+ draw();
+}
+function resetPoints(){init(); draw();}
+let drag=null;
 function draw(){
  ctx.clearRect(0,0,canvas.width,canvas.height);
-
- // GRID
- ctx.strokeStyle='rgba(255,255,255,0.05)';
- ctx.lineWidth=1;
- for(let i=0;i<canvas.width;i+=40){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,canvas.height);ctx.stroke()}
- for(let i=0;i<canvas.height;i+=40){ctx.beginPath();ctx.moveTo(0,i);ctx.lineTo(canvas.width,i);ctx.stroke()}
-
- const [A,B,C]=points;
-
- // TRIANGLE FILL WITH MATH POWER
- ctx.fillStyle='rgba(0,255,136,0.1)';
- ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.lineTo(C.x,C.y); ctx.closePath(); ctx.fill();
-
- // CIRCUMCIRCLE - POWER OF CODE!
- const D=2*(A.x*(B.y-C.y)+B.x*(C.y-A.y)+C.x*(A.y-B.y));
- if(Math.abs(D)>0.1){
-  const Ux=((A.x*A.x+A.y*A.y)*(B.y-C.y)+(B.x*B.x+B.y*B.y)*(C.y-A.y)+(C.x*C.x+C.y*C.y)*(A.y-B.y))/D;
-  const Uy=((A.x*A.x+A.y*A.y)*(C.x-B.x)+(B.x*B.x+B.y*B.y)*(A.x-C.x)+(C.x*C.x+C.y*C.y)*(B.x-A.x))/D;
-  const R=dist({x:Ux,y:Uy},A);
-  ctx.strokeStyle='rgba(255,0,102,0.3)';
-  ctx.lineWidth=2; ctx.setLineDash([8,8]);
-  ctx.beginPath(); ctx.arc(Ux,Uy,R,0,Math.PI*2); ctx.stroke(); ctx.setLineDash([]);
-  // center
-  ctx.fillStyle='#ff0066'; ctx.beginPath(); ctx.arc(Ux,Uy,4,0,Math.PI*2); ctx.fill();
+ ctx.strokeStyle='rgba(255,255,255,0.05)'; ctx.lineWidth=1;
+ for(let i=0;i<canvas.width;i+=30){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,canvas.height);ctx.stroke()}
+ for(let i=0;i<canvas.height;i+=30){ctx.beginPath();ctx.moveTo(0,i);ctx.lineTo(canvas.width,i);ctx.stroke()}
+ if(points.length>2){
+  ctx.fillStyle='rgba(0,255,136,0.12)'; ctx.beginPath(); ctx.moveTo(points[0].x,points[0].y);
+  points.forEach(p=>ctx.lineTo(p.x,p.y)); ctx.closePath(); ctx.fill();
+  ctx.strokeStyle='rgba(0,255,136,0.6)'; ctx.lineWidth=2; ctx.stroke();
  }
-
- // SIDES WITH LENGTH
- [[A,B],[B,C],[C,A]].forEach(([p1,p2])=>{
-  ctx.strokeStyle='rgba(0,255,136,0.8)'; ctx.lineWidth=2;
-  ctx.beginPath(); ctx.moveTo(p1.x,p1.y); ctx.lineTo(p2.x,p2.y); ctx.stroke();
-  const mx=(p1.x+p2.x)/2, my=(p1.y+p2.y)/2;
-  ctx.fillStyle='#000'; ctx.fillRect(mx-20,my-10,40,16);
-  ctx.fillStyle='#00ff88'; ctx.font='11px monospace'; ctx.textAlign='center';
-  ctx.fillText(dist(p1,p2).toFixed(1)+'px',mx,my);
- });
-
- // POINTS - DRAGGABLE!
+ // sides
+ for(let i=0;i<points.length;i++){
+  const p1=points[i], p2=points[(i+1)%points.length];
+  if(points.length>2 || i==0){
+   ctx.strokeStyle='#00ff88'; ctx.lineWidth=2.5; ctx.beginPath(); ctx.moveTo(p1.x,p1.y); ctx.lineTo(p2.x,p2.y); ctx.stroke();
+   const mx=(p1.x+p2.x)/2, my=(p1.y+p2.y)/2;
+   if(dist(p1,p2)>30){
+    ctx.fillStyle='rgba(0,0,0,0.85)'; ctx.fillRect(mx-20,my-10,40,12);
+    ctx.fillStyle='#00ff88'; ctx.font='bold 9px monospace'; ctx.textAlign='center'; ctx.fillText(dist(p1,p2).toFixed(0),mx,my-2);
+   }
+  }
+ }
  points.forEach(p=>{
   ctx.shadowColor=p.color; ctx.shadowBlur=20;
-  ctx.fillStyle=p.color; ctx.beginPath(); ctx.arc(p.x,p.y,14,0,Math.PI*2); ctx.fill();
-  ctx.shadowBlur=0;
-  ctx.fillStyle='#000'; ctx.beginPath(); ctx.arc(p.x,p.y,10,0,Math.PI*2); ctx.fill();
-  ctx.fillStyle='#fff'; ctx.font='bold 12px monospace'; ctx.textAlign='center'; ctx.textBaseline='middle';
-  ctx.fillText(p.label,p.x,p.y);
+  ctx.fillStyle=p.color; ctx.beginPath(); ctx.arc(p.x,p.y,20,0,Math.PI*2); ctx.fill(); ctx.shadowBlur=0;
+  ctx.fillStyle='#000'; ctx.beginPath(); ctx.arc(p.x,p.y,16,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle='#fff'; ctx.font='bold 13px monospace'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(p.label,p.x,p.y);
  });
-
- // MATH INFO
- const ab=dist(A,B), bc=dist(B,C), ca=dist(C,A);
- const s=(ab+bc+ca)/2;
- const area=Math.sqrt(Math.max(0,s*(s-ab)*(s-bc)*(s-ca)));
- const angA=angle(B,A,C), angB=angle(A,B,C), angC=angle(A,C,B);
-
- document.getElementById('info').innerHTML=`
- <b style="color:#00ff88">📐 GEOMETRY MATH - REAL TIME</b><br><br>
- <b style="color:#ff0066">A${A.label}</b> (${A.x|0},${A.y|0})<br>
- <b style="color:#00ccff">B${B.label}</b> (${B.x|0},${B.y|0})<br>
- <b style="color:#ffcc00">C${C.label}</b> (${C.x|0},${C.y|0})<br><br>
- <span style="color:#888">--- SIDES ---</span><br>
- AB = ${ab.toFixed(2)}<br>
- BC = ${bc.toFixed(2)}<br>
- CA = ${ca.toFixed(2)}<br><br>
- <span style="color:#888">--- ANGLES ---</span><br>
- ∠A = ${angA.toFixed(1)}°<br>
- ∠B = ${angB.toFixed(1)}°<br>
- ∠C = ${angC.toFixed(1)}°<br>
- Sum = ${(angA+angB+angC).toFixed(1)}°<br><br>
- <span style="color:#888">--- POWER MATH ---</span><br>
- Perimeter = ${(ab+bc+ca).toFixed(1)}<br>
- Area = ${area.toFixed(1)} (Heron)<br>
- s = ${s.toFixed(1)}<br><br>
- <span style="color:#555">a²+b²=c²? ${(ab*ab+ca*ca).toFixed(0)} vs ${(bc*bc).toFixed(0)}</span>
- `;
+ // info
+ let per=0; for(let i=0;i<points.length;i++) per+=dist(points[i],points[(i+1)%points.length]);
+ let area=points.length>2?polygonArea(points):0;
+ let html=`<b>📐 ${points.length} POINTS</b><br><br>`;
+ points.forEach(p=>{html+=`<span style="color:${p.color}">● ${p.label}</span> (${p.x|0},${p.y|0})<br>`});
+ html+=`<br>Perimeter ${per.toFixed(0)}<br>`;
+ if(area>0) html+=`Area ${area.toFixed(0)}<br>`;
+ html+=`Sides ${points.length}<br>`;
+ if(points.length==3) html+=`<br>Triangle 🔺<br>Sum 180°`;
+ else if(points.length==4) html+=`<br>Quadrilateral ◼️<br>Sum 360°`;
+ else if(points.length>4) html+=`<br>${points.length}-gon ⬡<br>Sum ${(points.length-2)*180}°`;
+ document.getElementById('info').innerHTML=html;
 }
-
-canvas.addEventListener('mousedown',e=>{
- const m={x:e.clientX,y:e.clientY};
- points.forEach(p=>{if(dist(m,p)<20) drag=p});
-});
-canvas.addEventListener('mousemove',e=>{
- if(drag){drag.x=e.clientX; drag.y=e.clientY; draw()}
-});
+function getPos(e){const t=e.touches?e.touches[0]:e; return {x:t.clientX,y:t.clientY};}
+canvas.addEventListener('mousedown',e=>{const m=getPos(e); points.forEach(p=>{if(dist(m,p)<35) drag=p;});});
+canvas.addEventListener('touchstart',e=>{const m=getPos(e); points.forEach(p=>{if(dist(m,p)<45) drag=p;});},{passive:false});
+canvas.addEventListener('mousemove',e=>{if(drag){const m=getPos(e); drag.x=m.x; drag.y=m.y; draw();}});
+canvas.addEventListener('touchmove',e=>{if(drag){e.preventDefault(); const m=getPos(e); drag.x=m.x; drag.y=m.y; draw();}},{passive:false});
 canvas.addEventListener('mouseup',()=>drag=null);
-canvas.addEventListener('touchstart',e=>{
- const t=e.touches[0]; const m={x:t.clientX,y:t.clientY};
- points.forEach(p=>{if(dist(m,p)<30) drag=p});
-});
-canvas.addEventListener('touchmove',e=>{
- if(drag){e.preventDefault(); drag.x=e.touches[0].clientX; drag.y=e.touches[0].clientY; draw()}
-},{passive:false});
 canvas.addEventListener('touchend',()=>drag=null);
-
-addEventListener('resize',()=>{canvas.width=innerWidth;canvas.height=innerHeight;draw()});
-draw();
+addEventListener('resize',resize);
+init(); resize();
 </script>
 </body>
 </html>
